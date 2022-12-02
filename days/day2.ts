@@ -1,6 +1,5 @@
-import fs from 'fs'
-import path from 'path'
 import { sum } from '../utils/array'
+import { split } from '../utils/string'
 
 const whoWon = (opp: string, you: string) => {
   switch (opp) {
@@ -41,19 +40,8 @@ const scoreGameAlt = ([opp, need]: string[]) => {
   return result + own
 }
 
-export const part1 = (input: string) => {
-  const parsed = input
-    .trim()
-    .split('\n')
-    .map((line) => scoreGame(line.split(' ')))
+const solve = (input: string, fn: (x: string[]) => number) =>
+  sum(split(input).map((l) => fn(split(l, ' '))))
 
-  return sum(parsed)
-}
-export const part2 = (input: string) => {
-  const parsed = input
-    .trim()
-    .split('\n')
-    .map((line) => scoreGameAlt(line.split(' ')))
-
-  return sum(parsed)
-}
+export const part1 = (input: string) => solve(input, scoreGame)
+export const part2 = (input: string) => solve(input, scoreGameAlt)
