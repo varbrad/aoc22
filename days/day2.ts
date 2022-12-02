@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { sum } from '../../utils/array'
+import { sum } from '../utils/array'
 
 const whoWon = (opp: string, you: string) => {
   switch (opp) {
@@ -59,7 +59,10 @@ export const part2 = (input: string) => {
 }
 
 export const solve = () => {
-  const input = fs.readFileSync(path.join(__dirname, 'input.txt'), 'utf-8')
+  const input = fs.readFileSync(
+    path.join(__dirname, './inputs/day2.txt'),
+    'utf-8'
+  )
   console.log('D2P1 |', part1(input))
   console.log('D2P2 |', part2(input))
 }
