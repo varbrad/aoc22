@@ -57,12 +57,3 @@ export const part2 = (input: string) => {
 
   return sum(parsed)
 }
-
-export const solve = () => {
-  const input = fs.readFileSync(
-    path.join(__dirname, './inputs/day2.txt'),
-    'utf-8'
-  )
-  console.log('D2P1 |', part1(input))
-  console.log('D2P2 |', part2(input))
-}

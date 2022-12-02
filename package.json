@@ -1,13 +1,13 @@
 {
   "name": "aoc22",
   "scripts": {
-    "start": "node -r esbuild-register ./index.ts",
+    "start": "node -r @swc-node/register ./index.ts",
     "format": "prettier -w .",
     "test": "vitest"
   },
   "devDependencies": {
-    "esbuild": "^0.15.16",
-    "esbuild-register": "^3.4.1",
+    "@swc-node/register": "^1.5.4",
+    "chalk": "^4.1.2",
     "prettier": "^2.8.0",
     "typescript": "^4.9.3",
     "vitest": "^0.25.3"

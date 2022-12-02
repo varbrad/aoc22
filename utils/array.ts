@@ -3,4 +3,5 @@ export const max = (arr: number[]) =>
 
 export const sortDesc = (arr: number[]) => arr.sort((a, b) => b - a)
 
-export const sum = (arr: number[]) => arr.reduce((acc, curr) => acc + curr, 0)
+export const sum = (arr: unknown[]): number =>
+  arr.reduce<number>((acc, curr) => acc + Number(curr), 0)
