@@ -5,3 +5,11 @@ export const sortDesc = (arr: number[]) => arr.sort((a, b) => b - a)
 
 export const sum = (arr: unknown[]): number =>
   arr.reduce<number>((acc, curr) => acc + Number(curr), 0)
+
+export const chunk = <T>(arr: T[], size: number): T[][] => {
+  const chunks = []
+  for (let i = 0; i < arr.length; i += size) {
+    chunks.push(arr.slice(i, i + size))
+  }
+  return chunks
+}
