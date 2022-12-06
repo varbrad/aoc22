@@ -13,3 +13,5 @@ export const chunk = <T>(arr: T[], size: number): T[][] => {
   }
   return chunks
 }
+
+export const array = (length: number) => Array.from({ length }).map((_, i) => i)
