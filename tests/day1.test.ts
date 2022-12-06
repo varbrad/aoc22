@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import * as day1 from '../day1'
+import * as day1 from '../days/day1'
 
 describe('D1P1', () => {
   it('should solve example case', () => {

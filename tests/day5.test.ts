@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { readDayInput } from '../../utils/io'
+import { readDayInput } from '../utils/io'
 
-import * as day5 from '../day5'
+import * as day5 from '../days/day5'
 
 describe('D5P1', () => {
   it('should solve example case', () => {
