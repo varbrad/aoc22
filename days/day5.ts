@@ -1,8 +1,12 @@
+import { array, pop } from '../utils/array'
 import { split } from '../utils/string'
 
+type Stack = string[]
+type Move = { n: number; from: number; to: number }
+
 interface State {
-  stacks: string[][]
-  moves: { n: number; from: number; to: number }[]
+  stacks: Stack[]
+  moves: Move[]
 }
 
 const parse = (input: string): State => {
@@ -26,33 +30,26 @@ const parse = (input: string): State => {
       const result = move.match(/move (\d+) from (\d+) to (\d+)/)
       if (!result) throw new Error('???')
       const [, n, from, to] = result
-      return { n: parseInt(n), from: parseInt(from), to: parseInt(to) }
+      return { n: Number(n), from: Number(from) - 1, to: Number(to) - 1 }
     }),
   }
 }
 
-export const part1 = (input: string) => {
-  const state = parse(input)
-  state.moves.forEach((move) => {
-    const movingStack = state.stacks[move.from - 1]
-    const toStack = state.stacks[move.to - 1]
-    for (let i = 0; i < move.n; i++) {
-      toStack.push(movingStack.pop()!)
-    }
-  })
-  return state.stacks.map((stack) => stack.pop()).join('')
+const solve = (
+  input: string,
+  moveFn: (move: Move, stacks: Stack[]) => void
+) => {
+  const { moves, stacks } = parse(input)
+  moves.forEach((move) => moveFn(move, stacks))
+  return stacks.map(pop).join('')
 }
 
-export const part2 = (input: string) => {
-  const state = parse(input)
-  state.moves.forEach((move) => {
-    const movingStack = state.stacks[move.from - 1]
-    const toStack = state.stacks[move.to - 1]
-    const tempStack = []
-    for (let i = 0; i < move.n; i++) {
-      tempStack.push(movingStack.pop()!)
-    }
-    toStack.push(...tempStack.reverse())
-  })
-  return state.stacks.map((stack) => stack.pop()).join('')
-}
+export const part1 = (input: string) =>
+  solve(input, (move, stacks) =>
+    array(move.n).forEach(() => stacks[move.to].push(stacks[move.from].pop()!))
+  )
+
+export const part2 = (input: string) =>
+  solve(input, (move, stacks) =>
+    stacks[move.to].push(...stacks[move.from].splice(-move.n))
+  )

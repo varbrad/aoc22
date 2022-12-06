@@ -15,3 +15,5 @@ export const chunk = <T>(arr: T[], size: number): T[][] => {
 }
 
 export const array = (length: number) => Array.from({ length }).map((_, i) => i)
+
+export const pop = <T>(arr: T[]) => arr.pop()
