@@ -1,18 +1,16 @@
-export const part1 = (input: string) =>
-  input
-    .trim()
-    .indexOf(
-      input.trim().match(/(.)((?!\1).)((?!\1|\2).)((?!\1|\2|\3).)/)![0]
-    ) + 4
-
-export const part2 = (input: string) => {
+const makeRegex = (n: number) => {
   let rgx = '(.)'
-  for (let i = 0; i < 13; i++) {
-    const a = Array.from({ length: i + 1 }, (_, ix) => '\\' + (ix + 1)).join(
-      '|'
-    )
-    rgx += `((?!${a}).)`
+  for (let i = 0; i < n - 1; i++) {
+    rgx += `((?!${Array.from(
+      { length: i + 1 },
+      (_, ix) => '\\' + (ix + 1)
+    ).join('|')}).)`
   }
-  const regex = new RegExp(rgx)
-  return input.trim().indexOf(input.trim().match(regex)![0]) + 14
+  return new RegExp(rgx)
 }
+
+const solve = (input: string, n: number) =>
+  input.trim().indexOf(input.trim().match(makeRegex(n))![0]) + n
+
+export const part1 = (input: string) => solve(input, 4)
+export const part2 = (input: string) => solve(input, 14)
