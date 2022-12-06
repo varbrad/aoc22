@@ -7,6 +7,16 @@ on:
     branches: [main]
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 18.7
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.7
+      - run: npm ci
+      - run: npm lint
   test:
     runs-on: ubuntu-latest
     steps:

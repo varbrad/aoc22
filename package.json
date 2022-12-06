@@ -3,6 +3,7 @@
   "scripts": {
     "start": "node -r @swc-node/register ./index.ts",
     "format": "prettier -w .",
+    "lint": "prettier -c .",
     "test": "vitest"
   },
   "devDependencies": {
