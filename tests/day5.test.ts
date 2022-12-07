@@ -17,6 +17,11 @@ move 1 from 1 to 2`
 
     expect(day5.part1(input)).toEqual('CMZ')
   })
+
+  it('should solve input case', () => {
+    const input = readDayInput(5)
+    expect(day5.part1(input)).toEqual('SPFMVDTZT')
+  })
 })
 
 describe('D5P2', () => {
@@ -32,5 +37,10 @@ move 2 from 2 to 1
 move 1 from 1 to 2`
 
     expect(day5.part2(input)).toEqual('MCD')
+  })
+
+  it('should solve input case', () => {
+    const input = readDayInput(5)
+    expect(day5.part2(input)).toEqual('ZFSJBPRFP')
   })
 })

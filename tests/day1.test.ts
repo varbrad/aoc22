@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import * as day1 from '../days/day1'
+import { readDayInput } from '../utils/io'
 
 describe('D1P1', () => {
   it('should solve example case', () => {
@@ -20,6 +21,11 @@ describe('D1P1', () => {
 10000`
 
     expect(day1.part1(input)).toEqual(24000)
+  })
+
+  it('should solve input case', () => {
+    const input = readDayInput(1)
+    expect(day1.part1(input)).toEqual(69501)
   })
 })
 
@@ -41,5 +47,10 @@ describe('D1P2', () => {
 10000`
 
     expect(day1.part2(input)).toEqual(45000)
+  })
+
+  it('should solve input case', () => {
+    const input = readDayInput(1)
+    expect(day1.part2(input)).toEqual(202346)
   })
 })
