@@ -31,6 +31,11 @@ $ ls
 
     expect(day7.part1(input)).toEqual(95_437)
   })
+
+  it('should solve input case', () => {
+    const input = readDayInput(7)
+    expect(day7.part1(input)).toEqual(1_611_443)
+  })
 })
 
 describe('D7P2', () => {
@@ -60,5 +65,10 @@ $ ls
 7214296 k`
 
     expect(day7.part2(input)).toEqual(24933642)
+  })
+
+  it('should solve input case', () => {
+    const input = readDayInput(7)
+    expect(day7.part2(input)).toEqual(2_086_088)
   })
 })
