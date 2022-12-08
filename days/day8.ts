@@ -13,10 +13,8 @@ const view = (
   const val = map[y][x]
   const coord = dir === 'x' ? x : y
   let dist = 1
-  for (let i = coord + delta; i >= 0 && i < map.length; i += delta) {
-    const next = dir === 'x' ? map[y][i] : map[i][x]
-    if (next >= val) return [false, dist]
-    dist++
+  for (let i = coord + delta; i >= 0 && i < map.length; i += delta, dist++) {
+    if ((dir === 'x' ? map[y][i] : map[i][x]) >= val) return [false, dist]
   }
   return [true, dist - 1]
 }
@@ -49,8 +47,7 @@ export const part2 = (input: string) => {
   let scenicScores: number[] = []
   for (let y = 1; y < map.length - 1; y++) {
     for (let x = 1; x < map[y].length - 1; x++) {
-      const score = getViews(map, x, y)[1]
-      scenicScores.push(score)
+      scenicScores.push(getViews(map, x, y)[1])
     }
   }
   return max(scenicScores)
