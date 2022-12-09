@@ -4,7 +4,8 @@
     "start": "node -r @swc-node/register ./index.ts",
     "format": "prettier -w .",
     "lint": "prettier -c .",
-    "test": "vitest"
+    "test": "vitest",
+    "bench": "vitest bench"
   },
   "devDependencies": {
     "@swc-node/register": "^1.5.4",
