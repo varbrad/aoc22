@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { bench, describe, expect, it } from 'vitest'
 
 import * as day1 from '../days/day1'
 import { readDayInput } from '../utils/io'
