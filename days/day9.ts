@@ -11,8 +11,7 @@ const parse = (input: string, length = 2) => ({
 
 const follow = (items: [number, number][], i: number) => {
   const [head, tail] = [items[i], items[i + 1]]
-  const dx = head[0] - tail[0]
-  const dy = head[1] - tail[1]
+  const [dx, dy] = [head[0] - tail[0], head[1] - tail[1]]
   if (Math.abs(dx) === 2) tail[0] += Math.sign(dx)
   if (Math.abs(dy) === 2) tail[1] += Math.sign(dy)
   if (Math.abs(dx) === 1 && Math.abs(dy) === 2) tail[0] = head[0]
@@ -23,8 +22,7 @@ const solve = (input: string, length = 2) => {
   const { state, moves } = parse(input, length)
   const map = new Map<string, number>([['0,0', 1]])
   moves.forEach((move) => {
-    const head = state[0]
-    const tail = state[state.length - 1]
+    const [head, tail] = [state[0], state[state.length - 1]]
     for (let i = 0; i < move.n; i++) {
       head[0] += move.dir === 'L' ? -1 : move.dir === 'R' ? 1 : 0
       head[1] += move.dir === 'D' ? -1 : move.dir === 'U' ? 1 : 0
