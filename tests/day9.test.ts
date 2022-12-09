@@ -4,7 +4,7 @@ import { readDayInput } from '../utils/io'
 import * as day9 from '../days/day9'
 
 describe('D9P1', () => {
-  it('should solve example case 1', () => {
+  it('should solve example case', () => {
     const input = `R 4
 U 4
 L 3
@@ -15,6 +15,11 @@ L 5
 R 2`
 
     expect(day9.part1(input)).toEqual(13)
+  })
+
+  it('should solve input case', () => {
+    const input = readDayInput(9)
+    expect(day9.part1(input)).toEqual(6332)
   })
 })
 
@@ -43,5 +48,10 @@ L 25
 U 20`
 
     expect(day9.part2(input)).toEqual(36)
+  })
+
+  it('should solve input case', () => {
+    const input = readDayInput(9)
+    expect(day9.part2(input)).toEqual(2511)
   })
 })
