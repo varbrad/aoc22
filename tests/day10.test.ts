@@ -1,6 +1,7 @@
 import { bench, describe, expect, it } from 'vitest'
 
 import * as day10 from '../days/day10'
+import { readDayInput } from '../utils/io'
 
 describe('D10P1', () => {
   it('should solve example case', () => {
@@ -152,6 +153,11 @@ noop
 noop`
 
     expect(day10.part1(input)).toEqual(13140)
+  })
+
+  it('should solve input case', () => {
+    const input = readDayInput(10)
+    expect(day10.part1(input)).toEqual(13720)
   })
 })
 
@@ -311,6 +317,18 @@ noop`
 #####.....#####.....#####.....#####.....
 ######......######......######......####
 #######.......#######.......#######.....`
+    )
+  })
+
+  it('should solve input case', () => {
+    const input = readDayInput(10)
+    expect(day10.part2(input)).toEqual(
+      `####.###..#..#.###..#..#.####..##..#..#.
+#....#..#.#..#.#..#.#..#....#.#..#.#..#.
+###..###..#..#.#..#.####...#..#....####.
+#....#..#.#..#.###..#..#..#...#....#..#.
+#....#..#.#..#.#.#..#..#.#....#..#.#..#.
+#....###...##..#..#.#..#.####..##..#..#.`
     )
   })
 })
