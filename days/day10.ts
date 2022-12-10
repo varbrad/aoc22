@@ -1,4 +1,3 @@
-import { d } from 'vitest/dist/index-9f5bc072'
 import { sum } from '../utils/array'
 import { split } from '../utils/string'
 
