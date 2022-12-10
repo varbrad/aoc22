@@ -9,6 +9,7 @@ import * as day6 from './days/day6'
 import * as day7 from './days/day7'
 import * as day8 from './days/day8'
 import * as day9 from './days/day9'
+import * as day10 from './days/day10'
 import { readDayInput } from './utils/io'
 
 describe('Day 1', () => {
@@ -63,4 +64,10 @@ describe('Day 9', () => {
   const input = readDayInput(9)
   bench('Part 1', () => void day9.part1(input))
   bench('Part 2', () => void day9.part2(input))
+})
+
+describe('Day 10', () => {
+  const input = readDayInput(10)
+  bench('Part 1', () => void day10.part1(input))
+  bench('Part 2', () => void day10.part2(input))
 })
