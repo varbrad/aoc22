@@ -7,6 +7,9 @@ export const sortDesc = (arr: number[]) => arr.sort((a, b) => b - a)
 export const sum = (arr: unknown[]): number =>
   arr.reduce<number>((acc, curr) => acc + Number(curr), 0)
 
+export const product = (arr: number[]): number =>
+  arr.reduce((acc, curr) => acc * curr, 1)
+
 export const chunk = <T>(arr: T[], size: number): T[][] => {
   const chunks = []
   for (let i = 0; i < arr.length; i += size) {
