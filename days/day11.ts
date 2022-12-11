@@ -1,4 +1,6 @@
+import { property } from 'lodash'
 import { array, product, sortDesc } from '../utils/array'
+import { lcm } from '../utils/math'
 import { split } from '../utils/string'
 
 const bigOlRegex =
@@ -53,9 +55,6 @@ export const part1 = (input: string) =>
 
 export const part2 = (input: string, rounds = 10_000) => {
   const monkeys = parse(input)
-  const globalDivisor = monkeys.reduce(
-    (prev, curr) => prev * curr.test.divisor,
-    1
-  )
+  const globalDivisor = monkeys.map((m) => m.test.divisor).reduce(lcm)
   return solve(monkeys, (n) => n % globalDivisor, rounds)
 }
