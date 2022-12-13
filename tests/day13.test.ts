@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import * as day13 from '../days/day13'
+import { readDayInput } from '../utils/io'
 
 describe('D13P1', () => {
   it('should solve example case', () => {
@@ -28,6 +29,11 @@ describe('D13P1', () => {
 [1,[2,[3,[4,[5,6,7]]]],8,9]
 [1,[2,[3,[4,[5,6,0]]]],8,9]`
     expect(day13.part1(input)).toEqual(13)
+  })
+
+  it('should solve input case', () => {
+    const input = readDayInput(13)
+    expect(day13.part1(input)).toEqual(6656)
   })
 })
 
@@ -57,5 +63,10 @@ describe('D13P2', () => {
 [1,[2,[3,[4,[5,6,7]]]],8,9]
 [1,[2,[3,[4,[5,6,0]]]],8,9]`
     expect(day13.part2(input)).toEqual(140)
+  })
+
+  it('should solve input case', () => {
+    const input = readDayInput(13)
+    expect(day13.part2(input)).toEqual(19716)
   })
 })
