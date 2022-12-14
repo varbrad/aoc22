@@ -1,4 +1,4 @@
-import { minmax } from '../utils/math'
+import { minmax, nextBounds } from '../utils/math'
 import { split } from '../utils/string'
 
 const parse = (input: string) => {
@@ -16,100 +16,41 @@ const parse = (input: string) => {
       for (let x = x1; x <= x2; ++x) {
         for (let y = y1; y <= y2; ++y) {
           grid.set(`${x},${y}`, '#')
+          nextBounds(bounds, x, y)
         }
       }
-      if (x1 < bounds.x1) bounds.x1 = x1
-      if (x2 > bounds.x2) bounds.x2 = x2
-      if (y1 < bounds.y1) bounds.y1 = y1
-      if (y2 > bounds.y2) bounds.y2 = y2
     }
   })
   return { grid, bounds, floor: bounds.y2 + 2 }
 }
 
-const print = ({ grid, bounds }: ReturnType<typeof parse>) => {
-  let str = ''
-  for (let y = bounds.y1; y <= bounds.y2; ++y) {
-    for (let x = bounds.x1; x <= bounds.x2; ++x) {
-      str += grid.get(`${x},${y}`) || '.'
-    }
-    str += '\n'
-  }
-  console.log(str)
-}
-
 const addSand = (
   opts: ReturnType<typeof parse>,
-  [x, y]: [x: number, y: number]
-): 'out-of-bounds' | 'continue' => {
+  [x, y]: [x: number, y: number],
+  withFloor: boolean = false
+): 'out-of-bounds' | 'continue' | 'at-source' => {
   const { grid, bounds } = opts
-  // 0. Are we below the bounds?
-  if (y > bounds.y2) return 'out-of-bounds'
-  // 1. Is the block below free
-  if (!grid.has(`${x},${y + 1}`)) {
-    return addSand(opts, [x, y + 1])
+  if (!withFloor && y > bounds.y2) return 'out-of-bounds'
+  for (const dx of [0, -1, 1]) {
+    if (!grid.has(`${x + dx},${y + 1}`) && (!withFloor || y + 1 < opts.floor)) {
+      return addSand(opts, [x + dx, y + 1], withFloor)
+    }
   }
-  // 2. Is the block to the below left free?
-  if (!grid.has(`${x - 1},${y + 1}`)) {
-    return addSand(opts, [x - 1, y + 1])
-  }
-  // 3. Is the block to the below right free?
-  if (!grid.has(`${x + 1},${y + 1}`)) {
-    return addSand(opts, [x + 1, y + 1])
-  }
-  // 4. Ok we are stuck, lets add ourselves to the grid
   grid.set(`${x},${y}`, 'o')
-  if (x < bounds.x1) bounds.x1 = x
-  if (x > bounds.x2) bounds.x2 = x
-  if (y < bounds.y1) bounds.y1 = y
-  if (y > bounds.y2) bounds.y2 = y
-  return 'continue'
-}
-
-const addSandWithFloor = (
-  opts: ReturnType<typeof parse>,
-  [x, y]: [x: number, y: number]
-): 'continue' | 'at-source' => {
-  const { grid, bounds } = opts
-  // 1. Is the block below free
-  if (!grid.has(`${x},${y + 1}`) && y + 1 < opts.floor) {
-    return addSandWithFloor(opts, [x, y + 1])
-  }
-  // 2. Is the block to the below left free?
-  if (!grid.has(`${x - 1},${y + 1}`) && y + 1 < opts.floor) {
-    return addSandWithFloor(opts, [x - 1, y + 1])
-  }
-  // 3. Is the block to the below right free?
-  if (!grid.has(`${x + 1},${y + 1}`) && y + 1 < opts.floor) {
-    return addSandWithFloor(opts, [x + 1, y + 1])
-  }
-  // 4. Ok we are stuck, lets add ourselves to the grid
-  grid.set(`${x},${y}`, 'o')
-  if (x < bounds.x1) bounds.x1 = x
-  if (x > bounds.x2) bounds.x2 = x
-  if (y < bounds.y1) bounds.y1 = y
-  if (y > bounds.y2) bounds.y2 = y
+  nextBounds(bounds, x, y)
   return x === 500 && y === 0 ? 'at-source' : 'continue'
 }
 
-export const part1 = (input: string) => {
-  const data = parse(input)
-  let count = 0
-  while (true) {
-    const result = addSand(data, [500, 0])
-    if (result === 'out-of-bounds') break
-    count++
+const solve = (
+  input: string,
+  breakAt: 'out-of-bounds' | 'at-source',
+  countFrom = 0
+) => {
+  for (let [count, data] = [countFrom, parse(input)]; true; count++) {
+    const result = addSand(data, [500, 0], breakAt === 'at-source')
+    if (result === breakAt) return count
   }
-  return count
 }
 
-export const part2 = (input: string) => {
-  const data = parse(input)
-  let count = 0
-  while (true) {
-    const result = addSandWithFloor(data, [500, 0])
-    count++
-    if (result === 'at-source') break
-  }
-  return count
-}
+export const part1 = (input: string) => solve(input, 'out-of-bounds', 0)
+export const part2 = (input: string) => solve(input, 'at-source', 1)
