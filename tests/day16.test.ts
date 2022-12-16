@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import * as day16 from '../days/day16'
+import { readDayInput } from '../utils/io'
 
 describe('D16P1', () => {
   it('should solve example case', () => {
@@ -16,5 +17,10 @@ Valve II has flow rate=0; tunnels lead to valves AA, JJ
 Valve JJ has flow rate=21; tunnel leads to valve II`
 
     expect(day16.part1(input)).toEqual(1651)
+  })
+
+  it('should input case', () => {
+    const input = readDayInput(16)
+    expect(day16.part1(input)).toEqual(1559)
   })
 })
