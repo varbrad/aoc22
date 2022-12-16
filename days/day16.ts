@@ -1,7 +1,7 @@
-import { evaluateMoves, maxScoreLeft, State } from './evaluator'
-import { parse, Valve } from './parse'
-import { producePathfinderMap } from './pathfinder'
-import { solve, solve2 } from './processor'
+import { evaluateMoves, maxScoreLeft, State } from './day16/evaluator'
+import { parse, Valve } from './day16/parse'
+import { producePathfinderMap } from './day16/pathfinder'
+import { solve, solve2 } from './day16/processor'
 
 export const part1 = (input: string) => {
   const valves = parse(input)
