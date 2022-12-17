@@ -20,4 +20,9 @@ describe('D17P2', () => {
     const input = '>>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>'
     expect(day17.part2(input)).toEqual(1514285714288)
   })
+
+  it('should solve input case', () => {
+    const input = readDayInput(17)
+    expect(day17.part2(input)).toEqual(1594842406882)
+  })
 })
