@@ -46,7 +46,7 @@ const solve = (input: string, loops: number) => {
   let maxY = -1
   let move = 0
   let moveList = []
-  for (let i = 0; i < 50_000; ++i) {
+  for (let i = 0; i < 10_000; ++i) {
     const shape = shapes[i % shapes.length]
     const mover = { x: 2, y: maxY + 4, shape }
 
