@@ -40,12 +40,13 @@ const lockShape = (
   return maxY
 }
 
-export const part1 = (input: string) => {
+const solve = (input: string, loops: number) => {
   const movements = split(input, '').map((v) => (v === '<' ? -1 : 1))
   const grid = new Map<string, string>()
   let maxY = -1
   let move = 0
-  for (let i = 0; i < 2022; ++i) {
+  let moveList = []
+  for (let i = 0; i < 25_000; ++i) {
     const shape = shapes[i % shapes.length]
     const mover = { x: 2, y: maxY + 4, shape }
 
@@ -67,7 +68,10 @@ export const part1 = (input: string) => {
       })
 
       if (willStop) {
-        maxY = Math.max(lockShape(grid, mover), maxY)
+        const thisY = lockShape(grid, mover)
+        const diff = thisY - maxY
+        maxY = Math.max(thisY, maxY)
+        moveList.push(diff)
         break
       } else {
         mover.y--
@@ -75,5 +79,30 @@ export const part1 = (input: string) => {
     }
   }
 
-  return maxY + 1
+  const regex = /(.*)(.+?)(\2{10})/
+  const bigList = moveList.join(',')
+  const match = regex.exec(bigList)
+
+  const introIndex = bigList.indexOf(match![2])
+  const intro = bigList.substring(0, introIndex).split(',').map(Number)
+  const repeatable = match![2].replace(/^,/, '').split(',').map(Number)
+
+  const introSum = intro.reduce((prev, curr) => Math.max(prev, prev + curr), 0)
+  const repeatableVal = repeatable.reduce(
+    (prev, curr) => Math.max(prev, prev + curr),
+    0
+  )
+
+  const leftToDo = loops - intro.length
+  const cycles = Math.floor(leftToDo / repeatable.length)
+  const remainder = leftToDo % repeatable.length
+  const cycleSum = cycles * repeatableVal
+  const remainderSum = repeatable
+    .slice(0, remainder)
+    .reduce((prev, curr) => Math.max(prev, prev + curr), 0)
+
+  return introSum + cycleSum + remainderSum
 }
+
+export const part1 = (input: string) => solve(input, 2022)
+export const part2 = (input: string) => solve(input, 1_000_000_000_000)
