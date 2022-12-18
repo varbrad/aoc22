@@ -15,6 +15,9 @@ import * as day12 from './days/day12'
 import * as day13 from './days/day13'
 import * as day14 from './days/day14'
 import * as day15 from './days/day15'
+import * as day16 from './days/day16'
+import * as day17 from './days/day17'
+import * as day18 from './days/day18'
 import { readDayInput } from './utils/io'
 
 describe('Day 1', () => {
@@ -101,8 +104,26 @@ describe('Day 14', () => {
   bench('Part 2', () => void day14.part2(input))
 })
 
-describe('Day 15', () => {
-  const input = readDayInput(15)
-  bench('Part 1', () => void day15.part1(input))
-  bench('Part 2', () => void day15.part2(input))
+// describe('Day 15', () => {
+//   const input = readDayInput(15)
+//   bench('Part 1', () => void day15.part1(input))
+//   bench('Part 2', () => void day15.part2(input))
+// })
+
+// describe('Day 16', () => {
+//   const input = readDayInput(16)
+//   bench('Part 1', () => void day16.part1(input))
+//   bench('Part 2', () => void day16.part2(input))
+// })
+
+describe('Day 17', () => {
+  const input = readDayInput(17)
+  bench('Part 1', () => void day17.part1(input))
+  bench('Part 2', () => void day17.part2(input))
+})
+
+describe('Day 18', () => {
+  const input = readDayInput(18)
+  bench('Part 1', () => void day18.part1(input))
+  bench('Part 2', () => void day18.part2(input))
 })
