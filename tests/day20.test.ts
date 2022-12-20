@@ -21,20 +21,20 @@ describe('D20P1', () => {
   })
 })
 
-// describe('D20P2', () => {
-//   it('should pass example case', () => {
-//     const input = `1
-// 2
-// -3
-// 3
-// -2
-// 0
-// 4`
-//     expect(day20.part2(input)).toEqual(1623178306)
-//   })
+describe('D20P2', () => {
+  it('should pass example case', () => {
+    const input = `1
+2
+-3
+3
+-2
+0
+4`
+    expect(day20.part2(input)).toEqual(1623178306)
+  })
 
-//   it('should pass input case', () => {
-//     const input = readDayInput(20)
-//     expect(day20.part2(input)).toEqual(4275451658004)
-//   })
-// })
+  it('should pass input case', () => {
+    const input = readDayInput(20)
+    expect(day20.part2(input)).toEqual(4275451658004)
+  })
+})
