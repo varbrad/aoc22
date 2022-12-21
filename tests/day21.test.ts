@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 
 import * as day21 from '../days/day21'
+import { readDayInput } from '../utils/io'
 
 describe('D21P1', () => {
   it('should solve example case', () => {
@@ -21,6 +22,11 @@ drzm: hmdt - zczc
 hmdt: 32`
 
     expect(day21.part1(input)).toBe(152)
+  })
+
+  it('should solve input case', () => {
+    const input = readDayInput(21)
+    expect(day21.part1(input)).toBe(232974643455000)
   })
 })
 
@@ -43,5 +49,10 @@ drzm: hmdt - zczc
 hmdt: 32`
 
     expect(day21.part2(input)).toBe(301)
+  })
+
+  it('should solve input case', () => {
+    const input = readDayInput(21)
+    expect(day21.part2(input)).toBe(3740214169961)
   })
 })
