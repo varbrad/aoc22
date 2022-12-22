@@ -35,6 +35,7 @@ I'm really not trying to optimise for performance in these solutions. As long as
 | 19  | `5,277.7ms` | `114,737.9ms` (double yikes) |
 | 20  | `54.5ms`    | `384.7ms`                    |
 | 21  | `1.6ms`     | `1.3ms`                      |
+| 22  | `16.8ms`    | -                            |
 
 ## Tests
 

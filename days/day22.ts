@@ -1,5 +1,3 @@
-import { split } from '../utils/string'
-
 type NodeNeighbours = { top: Node; left: Node; right: Node; bottom: Node }
 type Node = {
   type: 'wall' | 'space'
